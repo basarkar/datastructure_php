@@ -27,6 +27,22 @@ $first = 3;
 $second = 5;
 $lca = LCA($tree, $first, $second);
 echo "LCA between $first and $second is = $lca \n";
+$path=[];
+findPath($tree, $path, 7);
+print_R($path);
+
+function findPath($tree, &$path, $val) {
+  if ($tree === NULL) {
+    return FALSE;
+  }
+  array_push($path, $tree->val);
+  if ($val == $tree->val) {
+    return TRUE;
+  }
+  elseif (findPath($tree->left, $path, $val) === FALSE || findPath($tree->right, $path, $val) === FALSE) {
+    array_pop($path);
+  }
+}
 
 function LCA($tree, $first, $second) {
   inOrderTraverse($tree, $inTrail); echo implode(', ', $inTrail) . "\n";
@@ -91,3 +107,5 @@ function postOrderTraverse($tree, &$trail) {
   }
   $trail[] = $tree->val;
 }
+
+
