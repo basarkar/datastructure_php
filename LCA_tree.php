@@ -32,16 +32,19 @@ findPath($tree, $path, 7);
 print_R($path);
 
 function findPath($tree, &$path, $val) {
-  if ($tree === NULL) {
+    if ($tree === NULL) {
+        return FALSE;
+    }
+    if ($val == $tree->val) {
+        array_push($path, $tree->val);
+        return TRUE;
+    }
+
+    if (findPath($tree->left, $path, $val) || findPath($tree->right, $path, $val)) {
+        array_push($path, $tree->val);
+        return TRUE;
+    }
     return FALSE;
-  }
-  array_push($path, $tree->val);
-  if ($val == $tree->val) {
-    return TRUE;
-  }
-  elseif (findPath($tree->left, $path, $val) === FALSE || findPath($tree->right, $path, $val) === FALSE) {
-    array_pop($path);
-  }
 }
 
 function LCA($tree, $first, $second) {
