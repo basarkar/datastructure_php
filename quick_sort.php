@@ -15,14 +15,13 @@ function quickSort(&$array, $start, $end) {
         return;
     }
     $pivot_index = partition($array, $start, $end);
-    //echo "Quick sorted array: " . implode(', ', $array) . "\n"; die;
     quickSort($array, $start, $pivot_index-1);
-    quickSort($array, $start, $pivot_index);
+    quickSort($array, $pivot_index, $end);
 }
 
 function partition(&$array, $start, $end) {
-    $pivot = $array[floor(($start+$end)/2)];//echo $start.$end;die;
-    while ($start <= $end) {
+    $pivot = $array[floor(($start+$end)/2)];
+    while ($start < $end) {
         while ($array[$start] < $pivot) {
             $start++;
         }
