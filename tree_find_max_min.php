@@ -23,18 +23,24 @@ $max = find_max_min($tree, 'max');
 echo "The max value of the tree: $max\n";
 
 function find_max_min($tree, $type) {
-    if ($tree == NULL) {
-        return NULL;
-    }
-    $left_val = find_max_min($tree->left, $type);
-    $right_val = find_max_min($tree->right, $type);
-    $array[] = $tree->val;
-    if ($left_val !== NULL) {
-        $array[] = $left_val;
-    }
-    if ($right_val !== NULL) {
-        $array[] = $right_val;
-    }
-    echo implode(',', $array) . ": " . $type($array) . "\n";
-    return $type($array);
+  if ($tree == NULL) {
+      return NULL;
+  }
+  // Add the tree node value in the array.
+  $array[] = $tree->val;
+  // Find left subtree min or max.
+  $left_val = find_max_min($tree->left, $type);
+  // Find right subtree min or max.
+  $right_val = find_max_min($tree->right, $type);
+
+  // If left min/max is not null then add in the array.
+  if ($left_val !== NULL) {
+      $array[] = $left_val;
+  }
+  // If right min/max is not null then add in the array.
+  if ($right_val !== NULL) {
+      $array[] = $right_val;
+  }
+  // Return the max/min number from the array.
+  return $type($array);
 }

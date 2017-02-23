@@ -3,7 +3,7 @@ $str = "ABCD";
 $str = str_split($str);
 $result = permutation($str);
 
-print_R($result);
+print_r($result);
 
 function permutation($array) {
   // Return the string if it is one character long.
