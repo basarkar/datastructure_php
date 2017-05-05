@@ -23,7 +23,7 @@ preOrderTraverse($tree, $preTrail);
 postOrderTraverse($tree, $postTrail);
 //echo "POSTORDER:\n" . implode(', ', $trail) . "\n\n"; $trail = NULL;
 
-$first = 3;
+$first = 7;
 $second = 5;
 $lca = LCA($tree, $first, $second);
 echo "LCA between $first and $second is = $lca \n";
@@ -48,8 +48,8 @@ function findPath($tree, &$path, $val) {
 }
 
 function LCA($tree, $first, $second) {
-  inOrderTraverse($tree, $inTrail); echo implode(', ', $inTrail) . "\n";
-  postOrderTraverse($tree, $postTrail); echo implode(', ', $postTrail) . "\n";
+  inOrderTraverse($tree, $inTrail); echo "Inorder trail: " . implode(', ', $inTrail) . "\n";
+  postOrderTraverse($tree, $postTrail); echo "Postorder trail: " . implode(', ', $postTrail) . "\n";
   // Find elements in the inTrail
   $key1 = array_search($first, $inTrail);
   $key2 = array_search($second, $inTrail);
