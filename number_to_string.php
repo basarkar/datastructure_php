@@ -6,7 +6,11 @@
  * Time: 10:47 AM
  */
 
-$input = '3121';
+/**
+ * Suppose a=1, b=2, z=26
+ * Now form all the strings from a given input like 31212121
+ */
+$input = '31212121';
 
 $result = number_to_string($input);
 print_R($result);
