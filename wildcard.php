@@ -13,7 +13,7 @@
  * Output: Boolean (True/False)
  */
 
-var_dump(wildcard_match('c*w', 'cauww'));
+var_dump(wildcard_match('c*w*a', 'cauwwab'));
 
 function wildcard_match($pattern, $string) {
   if ($pattern == '' || $string == '') {
@@ -22,7 +22,7 @@ function wildcard_match($pattern, $string) {
   $string = str_split($string);
   $pattern = str_split($pattern);
 
-  foreach ($string as $str) {
+  foreach ($string as $k=>$str) {
     if (empty($pattern)) {
       return FALSE;
     }
@@ -30,19 +30,21 @@ function wildcard_match($pattern, $string) {
       case '?':
         array_shift($pattern);
         break;
+
       case '*':
         // If we only have * then match all.
         if (empty($pattern[1])) {
           return TRUE;
         }
         else {
-          $next = $pattern[1];
-          if ($next == $str || $next == '?') {
-            // Remove *
-            array_shift($pattern);
-            // Remove next character.
-            array_shift($pattern);
+          // Recursion for all combination
+          array_shift($pattern);
+          for (; $k<count($string); $k++) {
+            if (wildcard_match(implode('', $pattern), implode('', array_slice($string, $k+1)))) {
+              return TRUE;
+            }
           }
+          return FALSE;
         }
         break;
       default:
