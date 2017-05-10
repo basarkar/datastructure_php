@@ -13,7 +13,7 @@
  * Output: Boolean (True/False)
  */
 
-var_dump(wildcard_match('c*w*a', 'cauwwab'));
+var_dump(wildcard_match('c*w*ab', 'cauwwab'));
 
 function wildcard_match($pattern, $string) {
   if ($pattern == '' || $string == '') {
@@ -56,11 +56,17 @@ function wildcard_match($pattern, $string) {
     }
   }
 
-  // @Todo If pattern left other than * then fail.
-  if (!empty($pattern)) {
-    return FALSE;
+  // If pattern left other than * then fail.
+
+  if (empty($pattern)) {
+    return TRUE;
   }
   else {
+    foreach ($pattern as $p) {
+      if ($p != '*') {
+        return FALSE;
+      }
+    }
     return TRUE;
   }
 }
