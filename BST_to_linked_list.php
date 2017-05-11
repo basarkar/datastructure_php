@@ -9,51 +9,41 @@ class Tree {
 }
 
 $tree = new Tree(10);
-//$tree->left = new Tree(8);
+$tree->left = new Tree(8);
 $tree->right = new Tree(13);
-//$tree->left->left = new Tree(7);
-//$tree->left->right = new Tree(9);
+$tree->left->left = new Tree(7);
+$tree->left->right = new Tree(9);
 $tree->right->left = new Tree(12);
-//$tree->right->right = new Tree(15);
+$tree->right->right = new Tree(15);
 
 inOrderTraverse($tree, $inTrail);
 echo "INORDER:\n" . implode(', ', $inTrail) . "\n\n";
 BST_to_LinkedList($tree, $prev_node, $head);
 traverse_linked_list($head);
 
+
 function BST_to_LinkedList(&$tree, &$prev_node = NULL, &$head = NULL) {
   if ($tree === NULL) {
     return NULL;
   }
   // Process Left
-  //echo $tree->val . "\n";
   BST_to_LinkedList($tree->left, $prev_node, $head);
+
   // Process Root
-  //echo $tree->val . "\n";
   // Current node
   $cur_node = $tree;
   $cur_node->left = $prev_node;
-
   if ($prev_node !== NULL) {
-    //echo $cur_node->val . " " . $prev_node->val . "\n";
     $prev_node->right = $cur_node;
   }
   // Set head at the left most node.
   else {
-    //echo $cur_node->val . "\n";
     $head = $cur_node;
-    //print_R($head);
   }
   // Set prev node to root
   $prev_node = $cur_node;
 
   // Process Right
-  if ($tree->val == 12) {
-    /*echo "\n*** print ***\n";
-    print_R($tree->right->val);
-    print_R($tree->left->val);*/
-    echo "\n*** End ***\n";
-  }
   BST_to_LinkedList($tree->right, $prev_node, $head);
 }
 
@@ -107,5 +97,4 @@ function postOrderTraverse($tree, &$trail) {
   }
   $trail[] = $tree->val;
 }
-
 
