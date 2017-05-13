@@ -6,7 +6,7 @@
  * Time: 8:12 AM
  */
 
-$str = "sabba";
+$str = "aacecaaa";
 echo shortest_palindrome($str). "\n";
 
 function shortest_palindrome($str) {
@@ -24,7 +24,8 @@ function shortest_palindrome($str) {
         }
         // Put the extra sting at the end of the original string.
         $extra_str2 .= $str[$total_char-$i-1];
-        $test_str = strrev($extra_str2).$str;
+        $test_str = $extra_str2.$str;
+        //echo "$test_str \n";
         if (is_palindrone($test_str)) {
             return $test_str;
         }
