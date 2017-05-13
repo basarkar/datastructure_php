@@ -13,7 +13,7 @@
  * Output: Boolean (True/False)
  */
 
-var_dump(wildcard_match('c*w*?b', 'cauwwab'));
+var_dump(wildcard_match('c**b', 'cauwwab'));
 
 function wildcard_match($pattern, $string) {
   if ($pattern == '' || $string == '') {
@@ -40,7 +40,7 @@ function wildcard_match($pattern, $string) {
           // Recursion for all combination
           array_shift($pattern);
           for (; $k<count($string); $k++) {
-            if (wildcard_match(implode('', $pattern), implode('', array_slice($string, $k+1)))) {
+            if (wildcard_match(implode('', $pattern), implode('', array_slice($string, $k)))) {
               return TRUE;
             }
           }
