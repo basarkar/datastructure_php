@@ -24,6 +24,7 @@ function root_to_leaf($tree, $data) {
     return;
   }
   $data[] = $tree->val;
+  // If leaf node print the path.
   if ($tree->left === NULL && $tree->right === NULL) {
     print_r($data);
   }
