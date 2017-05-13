@@ -13,7 +13,7 @@
  * Output: Boolean (True/False)
  */
 
-var_dump(wildcard_match('c*w*ab', 'cauwwab'));
+var_dump(wildcard_match('c*w*?b', 'cauwwab'));
 
 function wildcard_match($pattern, $string) {
   if ($pattern == '' || $string == '') {
