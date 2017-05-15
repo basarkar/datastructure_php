@@ -8,8 +8,10 @@
 
 $str = 'ADOBECODEBANC';
 $pattern = 'ABC';
-print_R(min_window($str, $pattern));
-echo "\n";
+echo "String: $str\n";
+echo "Pattern: $pattern\n";
+echo "Match: " . min_window($str, $pattern) . "\n";
+
 
 function min_window($str, $pattern) {
     $hash_pattern = [];
@@ -44,7 +46,7 @@ function min_window($str, $pattern) {
         }
 
         // if all the characters are matched
-        if ($count == $len_pattern) {
+        if ($count >= $len_pattern) {
             // Try to minimize the window i.e., check if
             // any character is occurring more no. of times
             // than its occurrence  in pattern, if yes
@@ -52,16 +54,15 @@ function min_window($str, $pattern) {
             // the useless characters.
             while (!isset($hash_pattern[$str[$start]])
             || $hash_str[$str[$start]] > $hash_pattern[$str[$start]]) {
-                $start++;
                 if (isset($hash_pattern[$str[$start]])
                     && $hash_str[$str[$start]] > $hash_pattern[$str[$start]]) {
                     $hash_str[$str[$start]]--;
                 }
+                $start++;
             }
 
             // Update the window size.
             $length = ($i - $start) +1;
-            echo "$length \n";
             if ($min_len === NULL || $min_len > $length) {
                 $min_len = $length;
                 $start_index = $start;
