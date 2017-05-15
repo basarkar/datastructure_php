@@ -22,7 +22,7 @@ function min_window($str, $pattern) {
         return "No such window exists";
     }
     // frequency of character in pattern.
-    for ($i = 0; $i<$len_pattern; $i++) {
+    for ($i=0; $i<$len_pattern; $i++) {
         if (!isset($hash_pattern[$pattern[$i]])) {
             $hash_pattern[$pattern[$i]] = 1;
         }
@@ -62,7 +62,7 @@ function min_window($str, $pattern) {
             }
 
             // Update the window size.
-            $length = ($i - $start) +1;
+            $length = ($i-$start)+1;
             if ($min_len === NULL || $min_len > $length) {
                 $min_len = $length;
                 $start_index = $start;
